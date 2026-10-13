@@ -1,0 +1,1085 @@
+<title>ADHD 30 秒自测</title>
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+/* Layout: riso-print sticker world. Each question is a full-bleed ink colour over drifting doodles; a hand-drawn cartoon "film" on a die-cut sticker, a giant question, and five chunky keycaps in the thumb zone. Single deliberate visual world (no dark variant). */
+:root {
+  color-scheme: light;
+  --ink: #17142E;
+  --paper: #FFFFFF;
+  --yellow: #FFE14A;
+  --pink: #FF5FAE;
+  --blue: #3D5AFE;
+  --orange: #FF7A2F;
+  --green: #1FC77E;
+  --hot: #FF3F3F;
+  --mute: #8A86A8;
+  --mis: #FF86C4;
+  --brain: #FF9CCB;
+  --fold: #D2498A;
+  /* world tokens, swapped per screen by script */
+  --bg: #FFE14A;
+  --on: #17142E;
+  --sh: #FF5FAE;
+  --a: #3D5AFE;
+  --f-display: "Bricolage Grotesque", "ZCOOL QingKe HuangYou", "Noto Sans SC", "PingFang SC", sans-serif;
+  --f-body: "Atkinson Hyperlegible", "Noto Sans SC", "PingFang SC", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { background-color: var(--bg); color: var(--on); font-family: var(--f-body); font-size: 17px; line-height: 1.5; overflow-x: hidden; transition: background-color .35s ease; -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+/* atmosphere: drifting doodles, halftone blobs, particles, grain */
+.doodles { position: fixed; inset: -280px; z-index: 0; pointer-events: none; background-color: var(--on); opacity: .1; -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280' fill='none' stroke='black' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'><path d='M42 20 L48 35 L63 36 L51 46 L55 61 L42 53 L29 61 L33 46 L21 36 L36 35 Z'/><path d='M118 40 q10 -16 20 0 t20 0 t20 0'/><path d='M238 30 L222 62 L238 62 L224 96'/><path d='M74 150 m-4 0 a4 4 0 1 1 4 4 a9 9 0 1 1 -9 -9 a14 14 0 1 1 14 14'/><path d='M176 132 q0 -15 13 -15 q13 0 13 13 q0 10 -12 14 v9 M190 172 v1'/><path d='M130 98 v22 M119 109 h22'/><path d='M206 222 c-7 -2 -7 -13 1 -15 c0 -9 12 -11 16 -4 c6 -5 17 -2 16 6 c8 2 7 13 0 14 c-2 8 -14 8 -17 3 c-4 4 -15 2 -16 -4 z M223 207 v20'/><path d='M44 230 m-13 0 a13 13 0 1 0 26 0 a13 13 0 1 0 -26 0'/><path d='M96 250 l11 -11 l11 11 l11 -11 l11 11'/><path d='M262 160 l6 -14 l6 14 l-6 14 z'/></svg>"); mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280' fill='none' stroke='black' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'><path d='M42 20 L48 35 L63 36 L51 46 L55 61 L42 53 L29 61 L33 46 L21 36 L36 35 Z'/><path d='M118 40 q10 -16 20 0 t20 0 t20 0'/><path d='M238 30 L222 62 L238 62 L224 96'/><path d='M74 150 m-4 0 a4 4 0 1 1 4 4 a9 9 0 1 1 -9 -9 a14 14 0 1 1 14 14'/><path d='M176 132 q0 -15 13 -15 q13 0 13 13 q0 10 -12 14 v9 M190 172 v1'/><path d='M130 98 v22 M119 109 h22'/><path d='M206 222 c-7 -2 -7 -13 1 -15 c0 -9 12 -11 16 -4 c6 -5 17 -2 16 6 c8 2 7 13 0 14 c-2 8 -14 8 -17 3 c-4 4 -15 2 -16 -4 z M223 207 v20'/><path d='M44 230 m-13 0 a13 13 0 1 0 26 0 a13 13 0 1 0 -26 0'/><path d='M96 250 l11 -11 l11 11 l11 -11 l11 11'/><path d='M262 160 l6 -14 l6 14 l-6 14 z'/></svg>"); -webkit-mask-size: 280px 280px; mask-size: 280px 280px; animation: drift 46s linear infinite; }
+@keyframes drift { to { transform: translate(280px, 280px); } }
+#fx, #fx2 { position: fixed; inset: 0; pointer-events: none; }
+#fx { z-index: 0; }
+#fx2 { z-index: 30; }
+.tone { position: fixed; z-index: 0; pointer-events: none; width: 56vmax; height: 56vmax; border-radius: 50%; background-image: radial-gradient(circle, var(--on) 26%, transparent 29%); background-size: 13px 13px; opacity: .13; -webkit-mask-image: radial-gradient(circle, #000 0%, transparent 68%); mask-image: radial-gradient(circle, #000 0%, transparent 68%); }
+.tone.t1 { right: -18vmax; top: -18vmax; }
+.tone.t2 { left: -22vmax; bottom: -26vmax; background-image: radial-gradient(circle, var(--sh) 30%, transparent 33%); opacity: .5; }
+.grain { position: fixed; inset: 0; z-index: 40; pointer-events: none; opacity: .22; mix-blend-mode: multiply; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+.wipe { position: fixed; inset: 0; z-index: 60; pointer-events: none; }
+
+.app { position: relative; z-index: 1; max-width: 980px; min-height: 100%; margin: 0 auto; display: flex; flex-direction: column; padding-inline: 20px; padding-block: 0 22px; }
+@media (max-width: 420px) { .app { padding-inline: 16px; } }
+
+/* top bar */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-block: 14px 10px; }
+.brand { display: flex; align-items: center; gap: 8px; font-family: "Bricolage Grotesque", "Noto Sans SC", "PingFang SC", sans-serif; font-weight: 800; font-synthesis: none; font-size: 18px; letter-spacing: -.01em; }
+.brand svg { width: 32px; height: 32px; animation: wig 2.4s ease-in-out infinite; }
+.brand { white-space: nowrap; }
+@media (max-width: 360px) { .brand { font-size: 16px; } #logo { display: none; } }
+.tools { display: flex; align-items: center; gap: 8px; }
+.ico { all: unset; cursor: pointer; display: grid; place-items: center; width: 40px; height: 40px; border: 2.5px solid var(--ink); border-radius: 50%; background: var(--paper); color: var(--ink); box-shadow: 0 3px 0 var(--ink); }
+.ico:active { transform: translateY(3px); box-shadow: none; }
+.ico svg { width: 20px; height: 20px; }
+.lang { display: inline-flex; border: 2.5px solid var(--ink); border-radius: 999px; overflow: hidden; background: var(--paper); box-shadow: 0 3px 0 var(--ink); }
+.lang button { all: unset; cursor: pointer; padding: 6px 14px; font-weight: 700; font-size: 15px; line-height: 1.45; color: var(--ink); }
+.lang button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.lang button:focus-visible, .ico:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+
+main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+/* entrances: from a visible resting state */
+@keyframes rise { from { transform: translateY(18px) scale(.985); opacity: .35; } to { transform: none; opacity: 1; } }
+.enter > * { animation: rise .5s cubic-bezier(.2, .9, .3, 1.15) both; }
+.enter > *:nth-child(2) { animation-delay: .05s; } .enter > *:nth-child(3) { animation-delay: .1s; }
+.enter > *:nth-child(4) { animation-delay: .15s; } .enter > *:nth-child(n+5) { animation-delay: .2s; }
+@keyframes wig { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
+@keyframes float { 50% { translate: 0 -6px; } }
+@keyframes wob { from { transform: rotate(calc(var(--w) * -3deg)); } to { transform: rotate(calc(var(--w) * 3deg)) translateY(calc(var(--w) * -2px)); } }
+@keyframes beat { 50% { transform: scale(1.18); } }
+@keyframes stampIn { 0% { transform: rotate(-4deg) scale(1.8); opacity: 0; } 70% { transform: rotate(-4deg) scale(.94); opacity: 1; } 100% { transform: rotate(-4deg) scale(1); } }
+
+/* shared */
+.eyebrow { margin: 0; font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.disp { font-family: var(--f-display); font-weight: 800; font-synthesis: none; text-wrap: balance; }
+.btn { all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 60px; padding: 12px 28px; border: 3px solid var(--ink); border-radius: 16px; background: var(--paper); color: var(--ink); box-shadow: 0 6px 0 var(--ink); font-weight: 700; font-size: 19px; line-height: 1.2; text-align: center; text-decoration: none; transition: transform .08s ease, box-shadow .08s ease; -webkit-tap-highlight-color: transparent; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 8px 0 var(--ink); }
+.btn:active { transform: translateY(6px); box-shadow: 0 0 0 var(--ink); }
+.btn.dark { background: var(--ink); color: var(--paper); box-shadow: 0 6px 0 var(--sh); }
+.btn.dark:hover { box-shadow: 0 8px 0 var(--sh); }
+.btn.big { min-height: 76px; padding: 14px 38px; font-family: var(--f-display); font-weight: 800; font-synthesis: none; font-size: 28px; border-radius: 20px; box-shadow: 0 8px 0 var(--ink); }
+.btn.big:hover { box-shadow: 0 10px 0 var(--ink); }
+.btn.go { min-height: 84px; padding: 14px 40px; background: var(--ink); color: var(--paper); border-radius: 22px; box-shadow: 0 9px 0 var(--pink), 0 9px 0 3px var(--ink); }
+.btn.go:hover { transform: translateY(-2px) rotate(-1deg); box-shadow: 0 11px 0 var(--pink), 0 11px 0 3px var(--ink); }
+.btn.go:active { transform: translateY(9px); box-shadow: 0 0 0 var(--pink), 0 0 0 3px var(--ink); }
+.btn.go .arr { display: inline-block; animation: nudge 1.1s ease-in-out infinite; }
+@keyframes nudge { 50% { transform: translateX(7px); } }
+@media (max-width: 520px) { .cta-row .btn.go { flex: 1 1 100%; } }
+.btn.sm { min-height: 50px; padding: 9px 20px; font-size: 17px; box-shadow: 0 4px 0 var(--ink); }
+.btn.dark.sm { box-shadow: 0 4px 0 var(--sh); }
+.btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+
+/* film frames */
+.film { transition: background-color .3s ease; }
+.film svg { display: block; width: 100%; height: 100%; }
+.mis { opacity: .9; }
+.mis .s-ink, .mis .s-mut, .mis .s-hot, .mis .s-fold, .mis .s-ok { stroke: var(--mis); }
+.mis .f-ink, .mis .f-sur, .mis .f-acc, .mis .f-hi, .mis .f-hot, .mis .f-brain, .mis .f-blush { fill: var(--mis); }
+.mis .t-big, .mis .t-z { fill: var(--mis); }
+
+/* shared-link banner */
+.friend { align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; max-width: 100%; padding: 8px 16px 8px 8px; border: 3px solid var(--ink); border-radius: 999px; background: var(--paper); color: var(--ink); font-weight: 700; font-size: 16px; box-shadow: 4px 4px 0 var(--ink); transform: rotate(-1.5deg); }
+.friend svg { width: 32px; height: 32px; flex: 0 0 auto; }
+
+/* intro */
+.intro { flex: 1; display: flex; flex-direction: column; gap: 22px; padding-block: 8px 8px; }
+/* a centred poster; the brain buddy stands on the Start button */
+.poster { margin-block: auto; display: flex; flex-direction: column; align-items: center; gap: 22px; padding-block: 1vh 2vh; text-align: center; }
+.poster .eyebrow { text-wrap: balance; }
+.poster .hero { font-size: clamp(54px, min(13vw, 15vh), 140px); }
+.poster .tagline { max-width: 34ch; }
+.tagline .tl { display: inline-block; }
+.intro .note { text-align: center; }
+.poster .cta-row { justify-content: center; padding-top: 112px; }
+.poster .pills { justify-content: center; }
+.intro .friend { align-self: center; }
+.btn.go { position: relative; }
+.buddy { position: absolute; right: 50%; bottom: calc(100% - 4px); width: 150px; height: 145px; margin-right: -75px; pointer-events: none; }
+.buddy svg { display: block; width: 100%; height: 100%; overflow: visible; }
+@media (max-width: 520px) { .poster .cta-row { align-self: stretch; padding-top: 96px; } .buddy { width: 124px; height: 120px; margin-right: -62px; } }
+.hero { margin: 0; font-size: clamp(54px, 14vw, 120px); line-height: 1.02; letter-spacing: -.035em; text-shadow: 3px 3px 0 var(--sh); }
+:lang(zh) .hero { letter-spacing: 0; line-height: 1.16; }
+.mag { display: inline-block; margin: 0 .025em; padding: 0 .1em; border: .055em solid var(--ink); border-radius: .16em; color: var(--ink); text-shadow: none; box-shadow: .07em .07em 0 var(--ink); transform: rotate(var(--r)); transition: transform .25s cubic-bezier(.3, 1.8, .5, 1); animation: float 2.6s ease-in-out infinite; animation-delay: var(--d); cursor: default; }
+.mag:hover { transform: rotate(calc(var(--r) * -1.6)) scale(1.08); }
+.mag.m0 { background: var(--pink); } .mag.m1 { background: var(--blue); color: var(--paper); } .mag.m2 { background: var(--green); } .mag.m3 { background: var(--orange); }
+.tagline { margin: 0; max-width: 30ch; font-size: clamp(20px, 5vw, 26px); line-height: 1.4; font-weight: 700; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px 6px 6px; border: 2.5px solid var(--ink); border-radius: 999px; background: var(--paper); color: var(--ink); font-weight: 700; font-size: 15px; transform: rotate(var(--r)); }
+.pill svg { width: 24px; height: 24px; flex: 0 0 auto; }
+.note { margin: 0; font-size: 15px; font-weight: 700; opacity: .85; }
+
+/* question */
+.q { flex: 1; display: flex; flex-direction: column; gap: 16px; }
+.prog { display: flex; align-items: center; gap: 12px; }
+.dots { flex: 1; display: flex; gap: 7px; align-items: center; min-width: 0; }
+.dot { flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%; border: 2.5px dashed var(--on); opacity: .55; display: grid; place-items: center; }
+.dot.on { border: 2.5px solid var(--ink); background: var(--paper); opacity: 1; }
+.dot.on svg { width: 100%; height: 100%; }
+.dot.now { opacity: 1; border-style: solid; border-color: var(--ink); background: var(--sh); animation: beat 1s ease-in-out infinite; }
+.left { font-size: 16px; font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.stage { position: relative; flex: 0 1 auto; height: clamp(180px, 36vh, 420px); min-height: 120px; border: 3px solid var(--ink); border-radius: 26px; background: var(--paper); box-shadow: 8px 8px 0 var(--ink); transform: rotate(var(--tilt)); overflow: hidden; }
+.stage .film { width: 100%; height: 100%; }
+.stag { position: absolute; top: 12px; right: 14px; display: flex; align-items: center; gap: 8px; padding: 4px 16px 4px 4px; border: 3px solid var(--ink); border-radius: 999px; background: var(--paper); color: var(--ink); font-family: var(--f-display); font-weight: 800; font-synthesis: none; font-size: 18px; box-shadow: 3px 3px 0 var(--ink); }
+.stag svg { width: 34px; height: 34px; }
+.qhead { display: flex; flex-direction: column; gap: 10px; }
+.qtext { margin: 0; font-size: clamp(29px, 7vw, 54px); line-height: 1.1; letter-spacing: -.022em; text-shadow: 3px 3px 0 var(--sh); }
+/* ZCOOL QingKe is too light and condensed to carry a question, so Chinese questions use Noto Sans SC Black, with a thinner shadow than English so the strokes stay crisp. */
+:lang(zh) .qtext { font-family: "Noto Sans SC", "PingFang SC", sans-serif; font-weight: 900; letter-spacing: .02em; line-height: 1.32; text-shadow: 2px 2px 0 var(--sh); }
+.qtext .wd { display: inline-block; white-space: nowrap; }
+.qtext .ch { display: inline-block; --w: 0; }
+.qtext.w3 .ch { --w: 1; animation: wob .34s ease-in-out infinite alternate; }
+.qtext.w4 .ch { --w: 2.2; animation: wob .17s ease-in-out infinite alternate; }
+.qtext.gentle.w3 .ch { --w: .25; animation-duration: .8s; }
+.qtext.gentle.w4 .ch { --w: .55; animation-duration: .55s; }
+.tape { align-self: flex-start; max-width: 100%; margin: 4px 0 0; padding: 8px 16px; border: 2.5px solid var(--ink); border-radius: 6px; background: var(--paper); color: var(--ink); font-size: clamp(16px, 3.8vw, 19px); line-height: 1.4; transform: rotate(-.8deg); box-shadow: 3px 3px 0 var(--ink); }
+.tape b { color: var(--a); }
+.grow { flex: 1 1 0; max-height: 36px; }
+.keys { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(6px, 1.6vw, 16px); padding-bottom: 6px; }
+.key { all: unset; box-sizing: border-box; position: relative; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: clamp(104px, 15vh, 140px); padding: 12px 2px 10px; border: 3px solid var(--ink); border-radius: 20px; background: var(--paper); color: var(--ink); box-shadow: 0 7px 0 var(--ink); font-weight: 700; font-size: clamp(13px, 3.5vw, 20px); line-height: 1.12; text-align: center; transform: rotate(var(--r)); transition: transform .09s ease, box-shadow .09s ease, background-color .15s; -webkit-tap-highlight-color: transparent; }
+.key svg { width: clamp(36px, 9vw, 60px); height: clamp(36px, 9vw, 60px); transition: transform .2s cubic-bezier(.3, 1.8, .5, 1); }
+.key.pv { transform: translateY(-4px) rotate(var(--r)); box-shadow: 0 11px 0 var(--ink); }
+.key.pv svg { transform: scale(1.16) rotate(-8deg); }
+.key.sel { background: var(--sh); transform: translateY(6px) rotate(var(--r)); box-shadow: 0 1px 0 var(--ink); }
+.key.sel svg { transform: scale(1.2); }
+.key:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.key .kn { position: absolute; top: 6px; left: 9px; font-size: 12px; font-weight: 400; opacity: .55; }
+.qfoot { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; }
+.back { all: unset; cursor: pointer; padding: 8px 2px; font-weight: 700; font-size: 17px; }
+.back:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.back:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.kbd { font-size: 14px; font-weight: 700; opacity: .75; }
+@media (hover: none) { .kbd, .key .kn { display: none; } }
+/* The question screen is exactly one screen tall and the film gives up height first, so the answers never fall below the fold.
+   Phone browsers measure vh as if their toolbars were hidden, which is why a fixed film height pushed the answers off screen. */
+.app:has(.q) { height: 100%; height: 100dvh; }
+main:has(> .q), .q { min-height: 0; }
+@media (max-width: 520px) {
+  .app:has(.q) { padding-bottom: max(10px, env(safe-area-inset-bottom)); }
+  .app:has(.q) .top { padding-block: 10px 6px; }
+  .q { gap: 10px; }
+  .q .stage { flex-grow: 1; }
+  .q .grow { display: none; }
+  .qhead { gap: 6px; }
+  .qtext { font-size: clamp(27px, 8vw, 32px); }
+  .tape { padding: 6px 12px; font-size: 15px; }
+  .key { min-height: 86px; gap: 6px; padding-block: 10px 8px; }
+  .key svg { width: 34px; height: 34px; }
+  .qfoot { min-height: 36px; }
+}
+
+/* result */
+.res { display: flex; flex-direction: column; gap: 36px; padding-block: 4px 8px; }
+.t-pos { --tone: #E5322D; --tone-soft: #FFC2BD; }
+.t-neg { --tone: #0B8F55; --tone-soft: #A8EBCB; }
+.rtop { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.done { padding: 5px 14px; border: 2.5px solid var(--ink); border-radius: 999px; background: var(--paper); color: var(--ink); font-weight: 700; font-size: 15px; box-shadow: 2px 2px 0 var(--ink); }
+.verdict { position: relative; display: flex; flex-direction: column; gap: 18px; padding: clamp(22px, 5.5vw, 44px); border: 3px solid var(--ink); border-radius: 28px; background: var(--paper); color: var(--ink); box-shadow: 9px 9px 0 var(--ink); }
+.stamp { align-self: flex-start; padding: 5px 16px; border: 4px solid var(--tone); border-radius: 10px; color: var(--tone); font-family: var(--f-display); font-weight: 800; font-synthesis: none; font-size: 21px; letter-spacing: .08em; text-transform: uppercase; transform: rotate(-4deg); animation: stampIn .5s cubic-bezier(.3, 1.4, .5, 1) .15s both; }
+.vh { margin: 0; font-size: clamp(58px, 15vw, 124px); line-height: 1; letter-spacing: -.04em; text-shadow: 5px 5px 0 var(--tone-soft); }
+:lang(zh) .vh { letter-spacing: 0; line-height: 1.12; }
+.vsub { margin: 0; font-size: clamp(18px, 4.4vw, 22px); max-width: 40ch; }
+.meter { display: flex; flex-direction: column; gap: 8px; max-width: 480px; padding-top: 6px; }
+.mcells { position: relative; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
+.mcells i { display: block; height: 24px; border: 2.5px solid var(--ink); border-radius: 6px; background: var(--paper); }
+.mcells i.on { background: var(--tone); }
+.mline { position: absolute; top: -9px; bottom: -9px; left: calc((100% - 30px) * .6667 + 19.5px); width: 3px; border-radius: 2px; background: var(--ink); }
+.mlab { display: flex; justify-content: space-between; gap: 12px; font-size: 15px; font-weight: 700; }
+.mlab span:last-child { color: var(--mute); }
+.vnext { margin: 4px 0 0; font-family: var(--f-display); font-weight: 800; font-synthesis: none; font-size: clamp(21px, 5vw, 28px); line-height: 1.25; max-width: 30ch; text-wrap: balance; }
+.honest { margin: 0; font-size: 15px; color: var(--mute); }
+.sec { display: flex; flex-direction: column; gap: 18px; }
+.sec > h2 { margin: 0; font-size: clamp(28px, 6.4vw, 38px); text-shadow: 3px 3px 0 var(--sh); }
+:lang(zh) .sec > h2 { text-shadow: none; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; counter-reset: s; }
+.steps li { display: flex; flex-direction: column; gap: 8px; padding: 20px; border: 3px solid var(--ink); border-radius: 18px; background: var(--paper); color: var(--ink); box-shadow: 5px 5px 0 var(--ink); transform: rotate(var(--r)); }
+.steps li::before { counter-increment: s; content: counter(s); display: grid; place-items: center; width: 44px; height: 44px; border: 3px solid var(--ink); border-radius: 50%; background: var(--yellow); font-family: var(--f-display); font-weight: 800; font-size: 22px; line-height: 1; }
+.steps b { font-size: 19px; }
+.steps p { margin: 0; font-size: 16px; }
+.duo { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 36px; align-items: center; }
+@media (max-width: 700px) { .duo { grid-template-columns: minmax(0, 1fr); } }
+.sharecol { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.sharecol p { margin: 0; font-weight: 700; }
+.sharecol .preview { padding: 12px 14px; border: 2.5px dashed var(--ink); border-radius: 12px; background: var(--paper); color: var(--ink); font-size: 15px; font-weight: 400; white-space: pre-line; }
+.srow { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.copybox { width: 100%; padding: 10px 12px; border: 2.5px solid var(--ink); border-radius: 10px; background: var(--paper); color: var(--ink); font: inherit; font-size: 15px; }
+
+/* share card */
+.holo-wrap { container-type: inline-size; width: 100%; max-width: 340px; justify-self: center; perspective: 900px; }
+.holo { position: relative; aspect-ratio: 4 / 5; display: flex; flex-direction: column; gap: 3.2cqw; padding: 5cqw; border: 3px solid var(--ink); border-radius: 22px; background: var(--paper); color: var(--ink); box-shadow: 9px 9px 0 var(--ink); overflow: hidden; transform: rotateX(var(--ry, 0deg)) rotateY(var(--rx, 0deg)) rotate(-1.5deg); transition: transform .18s ease-out; }
+.holo::after { content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; mix-blend-mode: multiply; background: linear-gradient(115deg, rgba(255, 255, 255, 0) 18%, rgba(255, 95, 174, .22) 32%, rgba(255, 225, 74, .28) 42%, rgba(31, 199, 126, .2) 52%, rgba(61, 90, 254, .22) 62%, rgba(255, 255, 255, 0) 80%); background-size: 260% 260%; animation: sheen 5s ease-in-out infinite alternate; }
+.holo::before { content: ""; position: absolute; inset: 0; z-index: 4; pointer-events: none; background: radial-gradient(circle at var(--hx, 30%) var(--hy, 20%), rgba(255, 255, 255, .7), rgba(255, 255, 255, 0) 42%); }
+@keyframes sheen { from { background-position: 0% 0%; } to { background-position: 100% 100%; } }
+.h-top { display: flex; justify-content: space-between; align-items: center; gap: 2cqw; font-weight: 700; font-size: 4.2cqw; }
+.h-top span:last-child { color: var(--mute); }
+.h-art { flex: 1; min-height: 0; border: 3px solid var(--ink); border-radius: 4cqw; overflow: hidden; background: var(--paper); }
+.h-art .film, .h-art svg { width: 100%; height: 100%; }
+.h-stamp { align-self: flex-start; padding: .6cqw 2.6cqw; border: .9cqw solid var(--tone); border-radius: 2cqw; color: var(--tone); font-weight: 700; font-size: 3.8cqw; letter-spacing: .06em; text-transform: uppercase; transform: rotate(-3deg); }
+.h-v { margin: -1cqw 0 0; font-family: var(--f-display); font-weight: 800; font-synthesis: none; font-size: 12.5cqw; line-height: 1; letter-spacing: -.03em; text-shadow: .8cqw .8cqw 0 var(--tone-soft); }
+.h-row { display: flex; align-items: center; justify-content: space-between; gap: 3cqw; }
+.h-faces { display: flex; gap: 1.4cqw; }
+.h-faces span { width: 9.6cqw; height: 9.6cqw; display: block; }
+.h-faces svg { width: 100%; height: 100%; display: block; }
+.h-n { font-family: var(--f-display); font-weight: 800; font-synthesis: none; font-size: 8cqw; line-height: 1; }
+.h-n small { font-size: .55em; color: var(--mute); }
+.h-foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 2cqw; padding-top: 2.4cqw; border-top: .7cqw solid var(--ink); font-size: 3cqw; color: var(--mute); }
+.h-foot b { color: var(--ink); font-size: 3.6cqw; }
+.h-foot span:last-child { text-align: right; overflow-wrap: anywhere; }
+
+.foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 18px; padding-top: 16px; border-top: 3px solid var(--ink); font-size: 14px; font-weight: 700; }
+.foot p { margin: 0; max-width: 62ch; }
+.foot a { color: inherit; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+
+/* film vocabulary (riso inks; accent follows the world) */
+.f-ink { fill: var(--ink); } .f-sur { fill: var(--paper); } .f-acc { fill: var(--a); } .f-hi { fill: var(--yellow); } .f-hot { fill: var(--hot); } .f-none { fill: none; }
+.f-brain { fill: var(--brain); } .f-blush { fill: #FF5F9E; }
+.s-ink { stroke: var(--ink); stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
+.s-thin { stroke-width: 2.2; }
+.s-fold { stroke: var(--fold); stroke-width: 2.2; stroke-linecap: round; fill: none; }
+.s-mut { stroke: var(--mute); stroke-width: 2.4; stroke-linecap: round; fill: none; }
+.s-hot { stroke: var(--hot); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+.s-ok { stroke: #10A060; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+.t-big { font-family: var(--f-display); font-weight: 800; font-size: 30px; fill: var(--hot); }
+.t-z { font-family: var(--f-display); font-weight: 800; font-size: 18px; fill: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  #fx, #fx2 { display: none; }
+}
+</style>
+
+<div class="doodles" aria-hidden="true"></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="tone t1" aria-hidden="true"></div>
+<div class="tone t2" aria-hidden="true"></div>
+<div class="app">
+  <header class="top">
+    <div class="brand"><span id="logo"></span><span id="brand"></span></div>
+    <div class="tools">
+      <button type="button" class="ico" data-act="snd" id="snd"></button>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-act="lang" data-l="zh" id="l-zh">中</button>
+        <button type="button" data-act="lang" data-l="en" id="l-en">EN</button>
+      </div>
+    </div>
+  </header>
+  <main id="main"></main>
+</div>
+<canvas id="fx2" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  // Public site; result links are SHARE_URL/r/<lang>-<score>, each with its own preview image.
+  const SHARE_URL = "https://adhd-form.vercel.app";
+  const SOURCE_URL = "https://github.com/Darren-Ter/adhd-form";
+  // Set by the /r/<lang>-<score> pages when someone opens a friend's shared result.
+  const SHARED = window.__SHARED__ || null;
+
+  /*score:start*/
+  // ASRS v1.1 Part A (0 never … 4 very often). Q1–3 count from "sometimes", Q4–6 from "often". 4 or more = screen positive.
+  const TH = [2, 2, 2, 3, 3, 3];
+  function score(ans) {
+    const hit = ans.map((a, i) => a != null && a >= TH[i]);
+    const a = hit.filter(Boolean).length;
+    let top = -1, best = 1;
+    for (let k = 0; k < 6; k++) if (ans[k] != null && ans[k] > best) { best = ans[k]; top = k; }
+    return { hit, a, top, pos: a >= 4 };
+  }
+  /*score:end*/
+
+  // ---------- worlds: one riso ink per screen ----------
+  const W = [
+    { bg: "#FFE14A", on: "#17142E", sh: "#FF5FAE", a: "#3D5AFE" },
+    { bg: "#FF5FAE", on: "#17142E", sh: "#FFE14A", a: "#3D5AFE" },
+    { bg: "#3D5AFE", on: "#FFFFFF", sh: "#FF5FAE", a: "#FF5FAE" },
+    { bg: "#FF7A2F", on: "#17142E", sh: "#FFE14A", a: "#3D5AFE" },
+    { bg: "#1FC77E", on: "#17142E", sh: "#FF5FAE", a: "#3D5AFE" },
+    { bg: "#7B4DFF", on: "#FFFFFF", sh: "#FFE14A", a: "#FF7A2F" },
+  ];
+  const RES_WORLD = { pos: 1, neg: 4 };
+  const INKS = ["#FF5FAE", "#FFE14A", "#3D5AFE", "#1FC77E", "#FF7A2F", "#7B4DFF", "#FFFFFF"];
+  // Film backdrop per answer level, matching the answer faces: calm mint → hot pink.
+  const TINT = ["#E6FBF1", "#EAF0FF", "#FFF6CC", "#FFE6D4", "#FFDDEE"];
+
+  // ---------- content ----------
+  const Q = [
+    { s: "finish", zh: ["在最难的部分搞定后，迟迟没法收尾", "报告写到 90%，最后的格式和检查一直没弄"], en: ["Struggle to wrap up the final details once the hard part is done", "The report is 90% written, but the formatting and final check never happen"] },
+    { s: "juggle", zh: ["做需要条理的事时，很难安排得井井有条", "搬家、报销、旅行计划，一想就乱"], en: ["Have trouble getting things in order when a task needs organizing", "Moving house, expense reports, trip planning: it all turns to chaos"] },
+    { s: "forget", zh: ["忘记约好的事，或该做的事", "会议开始了才想起来，或者忘了回消息"], en: ["Forget appointments or things you have to do", "Remembering the meeting as it starts, or never replying to that message"] },
+    { s: "avoid", zh: ["遇到需要动脑的任务，躲着或拖着不开始", "明明很重要，却先刷了一小时手机"], en: ["Avoid or delay starting tasks that need a lot of thought", "It matters, so you scroll your phone for an hour first"] },
+    { s: "fidget", zh: ["需要久坐时，手脚动个不停", "开会时抖腿、转笔、换坐姿"], en: ["Fidget or squirm when you have to sit for a long time", "Bouncing a leg, spinning a pen, shifting in your seat"] },
+    { s: "wheel", zh: ["觉得自己停不下来，像装了马达", "就算累了，也忍不住要找点事做"], en: ["Feel overly active, like you're driven by a motor", "Even when tired, you have to keep doing something"] },
+  ];
+
+  const T = {
+    zh: {
+      brand: "ADHD 30 秒自测",
+      eyebrow: "基于 WHO 成人 ADHD 自评量表 ASRS v1.1",
+      h1pre: "我是不是", h1post: "？",
+      tagline: "6 道题，30 秒。比刷完一条短视频还快。",
+      pills: ["每题点一下", "不用打字", "数据不上传"],
+      start: "开始 →", resume: n => `接着答第 ${n} 题 →`, restart: "从头来", seeLast: "看上次的结果 →",
+      friend: (h, n) => `朋友测出来：${h}（${n}/6）。轮到你了！`,
+      notDx: "这是筛查，不是诊断。",
+      past: "过去 6 个月，你多常会……",
+      qnum: (n, t) => `${n} / ${t}`, left: n => n ? `还剩 ${n} 题` : "最后一题！",
+      opts: ["从不", "很少", "有时", "经常", "总是"],
+      exPrefix: "比如 ", back: "← 上一题", kbd: "键盘 1–5 也能答", sound: "音效",
+      doneTag: "✓ 6 题已答完",
+      pos: { stamp: "筛查阳性", h: "很可能有 ADHD", sub: n => `你的回答达到了 WHO 成人 ADHD 筛查标准：6 题中 ${n} 题达标，标准是 4 题。`, next: () => "这不代表你有什么问题。如果这些情况困扰到你，可以找专业的人聊聊。", btn: "想进一步了解 ↓", steps: "想进一步了解的话" },
+      neg: { stamp: "筛查阴性", h: "不太像 ADHD", sub: n => `你的回答没有达到 WHO 成人 ADHD 筛查标准：6 题中 ${n} 题达标，标准是 4 题。`, next: n => n >= 2 ? "有一些迹象。如果这些情况确实困扰你，仍然可以找医生聊聊。" : "如果注意力还是困扰你，可以先从睡眠、压力和情绪查起。", btn: "想确认的话 ↓", steps: "如果还是想确认" },
+      meterYou: n => `你：${n} 题`, meterLine: "筛查线：4 题",
+      honest: "这是筛查，不是诊断。最终结果以医生评估为准。",
+      steps: [
+        ["找谁看", "三甲医院的精神科或心理科，或当地的精神卫生中心。部分医院开设了「成人 ADHD 门诊」，可以先在挂号平台搜一下。"],
+        ["带什么", "这页结果的截图；小时候的成绩单评语或家人的回忆（诊断要求 12 岁前就有表现）；几件它影响你工作或生活的具体例子。"],
+        ["会经历什么", "医生面谈加量表评估（如 DIVA），有时做注意力测试，也会排查焦虑、抑郁和睡眠问题。确诊后可以选择药物、认知行为治疗，或两者结合。"],
+      ],
+      shareTitle: "把你的结果发到 X", cardHint: "发出去的帖子会带上你的结果，链接会显示一张结果卡片：",
+      cardTop: "ADHD 30 秒自测", cardSrc: "WHO ASRS v1.1 · 筛查非诊断", cardTry: "你也测测 →",
+      shareX: "发到 X", copy: "复制结果链接", copied: "已复制 ✓",
+      tweet: (h, n) => `我做了 ADHD 30 秒自测，结果：${h}（${n}/6）。\n\n6 道题，每题点一下，基于 WHO 的 ASRS 筛查量表。你也测测：`,
+      foot: "基于世界卫生组织《成人 ADHD 自评量表》ASRS v1.1。焦虑、抑郁、睡眠不足、长期压力都可能带来类似的感觉，ADHD 只能由专业医生确诊。你的答案和结果只存在这个浏览器里：网页没有统计代码，还设置了安全策略，浏览器会拦下它向任何服务器发送数据的请求。只有你自己点分享时，链接里才会带上分数。",
+      again: "重新测一次", againSure: "再点一次，清空答案", source: "源代码公开，可以自己查 →",
+    },
+    en: {
+      brand: "ADHD 30s Check",
+      eyebrow: "Based on the WHO Adult ADHD Self-Report Scale · ASRS v1.1",
+      h1pre: "Could it be", h1post: "?",
+      tagline: "6 questions. 30 seconds. Faster than one more scroll.",
+      pills: ["One tap each", "No typing", "Nothing uploaded"],
+      start: "Start →", resume: n => `Pick up at question ${n} →`, restart: "Start over", seeLast: "See your last result →",
+      friend: (h, n) => `A friend got: ${h} (${n}/6). Your turn!`,
+      notDx: "This is a screening, not a diagnosis.",
+      past: "In the past 6 months, how often do you…",
+      qnum: (n, t) => `${n} / ${t}`, left: n => n ? `${n} to go` : "Last one!",
+      opts: ["Never", "Rarely", "Some\u00ADtimes", "Often", "Very often"],
+      exPrefix: "Like: ", back: "← Back", kbd: "Keys 1–5 work too", sound: "Sound",
+      doneTag: "✓ All 6 answered",
+      pos: { stamp: "Screen positive", h: "Likely ADHD", sub: n => `Your answers meet the WHO adult ADHD screening threshold: ${n} of 6, where the threshold is 4.`, next: () => "This doesn't mean something is wrong with you. If these patterns get in your way, a professional can help.", btn: "Want to know more? ↓", steps: "If you want to know more" },
+      neg: { stamp: "Screen negative", h: "Unlikely ADHD", sub: n => `Your answers don't meet the WHO adult ADHD screening threshold: ${n} of 6, where the threshold is 4.`, next: n => n >= 2 ? "There are some signs. If these things really bother you, it's still worth talking to a doctor." : "If focus still feels hard, sleep, stress and mood are good places to look first.", btn: "If you want to be sure ↓", steps: "If you still want to be sure" },
+      meterYou: n => `You: ${n}`, meterLine: "Threshold: 4",
+      honest: "This is a screening, not a diagnosis. A doctor makes the final call.",
+      steps: [
+        ["Who to see", "Start with your GP or primary care doctor and ask for a referral to a psychiatrist or psychologist who assesses adult ADHD."],
+        ["What to bring", "A screenshot of this result, school reports or a family member's memories from childhood (symptoms need to show up before age 12), and a few concrete examples of how it affects work or home."],
+        ["What happens", "A clinical interview and rating scales such as DIVA-5, sometimes an attention test. They'll also check for anxiety, depression and sleep problems. If diagnosed, treatment can include medication, therapy, or both."],
+      ],
+      shareTitle: "Post your result on X", cardHint: "The post includes your result, and the link shows a result card:",
+      cardTop: "ADHD 30s Check", cardSrc: "WHO ASRS v1.1 · screening, not diagnosis", cardTry: "Take it yourself →",
+      shareX: "Post on X", copy: "Copy result link", copied: "Copied ✓",
+      tweet: (h, n) => `I took the ADHD 30-second check. My result: ${h} (${n}/6).\n\n6 questions, one tap each, based on the WHO ASRS screener. Try it:`,
+      foot: "Based on the WHO Adult ADHD Self-Report Scale (ASRS v1.1). Anxiety, depression, poor sleep and long-term stress can feel similar; only a qualified clinician can diagnose ADHD. Your answers and result stay in this browser: there are no analytics, and a security policy makes the browser block this page from sending data to any server. Your score only leaves this device if you share it.",
+      again: "Start over", againSure: "Tap again to clear answers", source: "The code is open, check it yourself →",
+    },
+  };
+
+  // ---------- faces: the answer scale you can read without reading ----------
+  const FACE_FILL = ["#9BE8C4", "#BFD0FF", "#FFE14A", "#FFA066", "#FF5FAE"];
+  function face(v) {
+    const k = "#17142E", st = `stroke="${k}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"`;
+    let f = `<circle cx="20" cy="20" r="17" fill="${FACE_FILL[v]}" stroke="${k}" stroke-width="2.4"/>`;
+    if (v === 0) f += `<path d="M11 18 q3 3 6 0 M23 18 q3 3 6 0 M13 25 q7 6 14 0" ${st}/><path d="M30 6 h5 l-5 5 h5" stroke="${k}" stroke-width="1.6" fill="none" stroke-linejoin="round"/>`;
+    if (v === 1) f += `<circle cx="14" cy="17" r="2.2" fill="${k}"/><circle cx="26" cy="17" r="2.2" fill="${k}"/><path d="M14 25 q6 4 12 0" ${st}/>`;
+    if (v === 2) f += `<circle cx="16.5" cy="17" r="2.2" fill="${k}"/><circle cx="28.5" cy="17" r="2.2" fill="${k}"/><path d="M14 26 h12" ${st}/>`;
+    if (v === 3) f += `<circle cx="14" cy="17" r="4.4" fill="#fff" stroke="${k}" stroke-width="2"/><circle cx="26" cy="17" r="4.4" fill="#fff" stroke="${k}" stroke-width="2"/><circle cx="14.8" cy="17.6" r="1.9" fill="${k}"/><circle cx="26.8" cy="17.6" r="1.9" fill="${k}"/><path d="M12 28 q2 -2.5 4 0 t4 0 t4 0 t4 0" ${st}/><path d="M34 7 q3 4 0 6 q-3 -2 0 -6Z" fill="#7FC6FF" stroke="${k}" stroke-width="1.6"/>`;
+    if (v === 4) f += `<path d="M14 17 m-4 0 a4 4 0 1 1 4 4 a2.6 2.6 0 1 1 -2.6 -2.6 M26 17 m-4 0 a4 4 0 1 1 4 4 a2.6 2.6 0 1 1 -2.6 -2.6" ${st} stroke-width="2"/><ellipse cx="20" cy="28" rx="5" ry="4" fill="${k}"/><path d="M17.5 30 q2.5 3 5 0" fill="#FF3F3F"/><path d="M1.5 14 l3 2 M1.5 23 l3 -1.5 M38.5 14 l-3 2 M38.5 23 l-3 -1.5" ${st} stroke-width="2"/>`;
+    return `<svg viewBox="0 0 40 40" aria-hidden="true" focusable="false">${f}</svg>`;
+  }
+
+  // ---------- films: hand-drawn cartoon loops. scene(t seconds, i intensity 0–4) → SVG for viewBox 320×180 ----------
+  const D2R = Math.PI / 180, f1 = n => (+n).toFixed(1);
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const clamp01 = q => Math.max(0, Math.min(1, q));
+  const ease = q => q < .5 ? 2 * q * q : 1 - Math.pow(-2 * q + 2, 2) / 2;
+  const R = (x, y, w, h, c, rx = 0) => `<rect x="${f1(x)}" y="${f1(y)}" width="${f1(w)}" height="${f1(h)}" rx="${rx}" class="${c}"/>`;
+  const C = (cx, cy, r, c) => `<circle cx="${f1(cx)}" cy="${f1(cy)}" r="${f1(r)}" class="${c}"/>`;
+  const E = (cx, cy, rx, ry, c) => `<ellipse cx="${f1(cx)}" cy="${f1(cy)}" rx="${rx}" ry="${ry}" class="${c}"/>`;
+  const Ln = (x1, y1, x2, y2, c) => `<line x1="${f1(x1)}" y1="${f1(y1)}" x2="${f1(x2)}" y2="${f1(y2)}" class="${c}"/>`;
+  const P = (d, c) => `<path d="${d}" class="${c}"/>`;
+  const G = (tr, inner) => `<g transform="${tr}">${inner}</g>`;
+  const Tx = (x, y, s, c = "t-big") => `<text x="${f1(x)}" y="${f1(y)}" class="${c}">${s}</text>`;
+  const ground = P("M6 151 C 70 148, 170 154, 314 150", "s-ink f-none");
+  const limb = (x0, y0, a, len, dir) => [x0 + dir * Math.sin(a * D2R) * len, y0 + Math.cos(a * D2R) * len];
+  const check = (x, y, s = 1) => G(`translate(${f1(x)} ${f1(y)}) scale(${s})`, C(0, 0, 16, "f-sur s-ink") + P("M-8 0 L-2 6 L9 -7", "s-ok"));
+
+  // The recurring character: a little pink brain with stick limbs. Origin at the feet.
+  // Limb angles in degrees from straight down; positive swings outward on that side.
+  const BRAIN = "M-18 -30 C-25 -32 -25 -45 -17 -47 C-17 -55 -6 -58 -1 -53 C3 -58 15 -56 16 -48 C24 -47 25 -34 18 -30 C17 -22 6 -20 0 -23 C-6 -20 -17 -22 -18 -30 Z";
+  const FOLDS = "M0 -53 C-2 -49 2 -46 0 -43 M-11 -49 q4 1 3 5 M9 -51 q-3 3 1 6 M-20 -40 q4 -1 5 2 M19 -41 q-4 0 -5 3";
+  function brain(o) {
+    const s = o.s || 1.5, flip = o.flip || 1, lx = (o.look || 0) * 2.2;
+    let g = "";
+    if (!o.noLegs) [[-7, o.lL ?? 6, -1], [7, o.lR ?? 6, 1]].forEach(([hx, a, d]) => {
+      const [ex, ey] = limb(hx, -21, a, 19, d);
+      g += P(`M${hx} -21 L${f1(ex)} ${f1(ey)} l5 0`, "s-ink f-none");
+    });
+    [[-17, o.aL ?? 30, -1], [17, o.aR ?? 30, 1]].forEach(([sx, a, d]) => {
+      const [ex, ey] = limb(sx, -35, a, 15, d);
+      g += Ln(sx, -35, ex, ey, "s-ink") + C(ex, ey, 2.8, "f-sur s-ink s-thin");
+    });
+    g += P(BRAIN, "f-brain s-ink") + P(FOLDS, "s-fold") + E(-12, -29.5, 2.8, 1.7, "f-blush") + E(12, -29.5, 2.8, 1.7, "f-blush");
+    const eyes = {
+      calm: P("M-9.5 -37 q3.5 -3.5 7 0 M2.5 -37 q3.5 -3.5 7 0", "s-ink s-thin f-none"),
+      sleep: P("M-9.5 -36 q3.5 2.5 7 0 M2.5 -36 q3.5 2.5 7 0", "s-ink s-thin f-none"),
+      open: C(-6, -37, 4.2, "f-sur s-ink s-thin") + C(6, -37, 4.2, "f-sur s-ink s-thin") + C(-6 + lx, -36.6, 1.9, "f-ink") + C(6 + lx, -36.6, 1.9, "f-ink"),
+      wide: C(-6, -37, 5.4, "f-sur s-ink s-thin") + C(6, -37, 5.4, "f-sur s-ink s-thin") + C(-6 + lx, -37, 1.5, "f-ink") + C(6 + lx, -37, 1.5, "f-ink"),
+      spiral: C(-6, -37, 5, "f-sur s-ink s-thin") + C(6, -37, 5, "f-sur s-ink s-thin") + P("M-6 -37 m-3 0 a3 3 0 1 1 3 3 a1.7 1.7 0 1 1 -1.7 -1.7 M6 -37 m-3 0 a3 3 0 1 1 3 3 a1.7 1.7 0 1 1 -1.7 -1.7", "s-ink s-thin f-none"),
+    };
+    const mouths = {
+      smile: P("M-4 -29 q4 3.5 8 0", "s-ink s-thin f-none"),
+      flat: Ln(-3.5, -28, 3.5, -28, "s-ink s-thin"),
+      o: E(0, -27.5, 2.2, 2.8, "f-ink"),
+      wobble: P("M-6 -28 q1.5 -2 3 0 t3 0 t3 0 t3 0", "s-ink s-thin f-none"),
+      grin: P("M-5.5 -30 q5.5 7 11 0 Z", "f-ink s-ink s-thin"),
+    };
+    g += eyes[o.eyes || "open"] + mouths[o.mouth || "smile"];
+    if (o.sweat) g += P("M21 -55 q3.5 5 0 7.5 q-3.5 -2.5 0 -7.5Z", "f-sur s-ink s-thin");
+    if (o.item) g += o.item;
+    return G(`translate(${f1(o.x)} ${f1(o.y)}) rotate(${f1(o.rot || 0)}) scale(${f1(flip * s)} ${f1(s)})`, g);
+  }
+  const mood = i => ({ eyes: ["calm", "open", "open", "wide", "spiral"][i], mouth: ["smile", "smile", "flat", "wobble", "grin"][i], sweat: i >= 3 });
+  const run = (x, c, extra) => brain({ x, y: 151 - Math.abs(c) * 3, lL: 30 * c, lR: 30 * c, aL: 20 - 40 * c, aR: 20 + 40 * c, rot: 6, eyes: "open", mouth: "flat", ...extra });
+  const bfly = (x, y, t) => {
+    const f = .25 + Math.abs(Math.sin(t * 16)) * .75;
+    return G(`translate(${f1(x)} ${f1(y)})`, G(`scale(${f.toFixed(2)} 1)`, E(-7, -2, 8, 7, "f-hi s-ink s-thin") + E(7, -2, 8, 7, "f-hi s-ink s-thin")) + Ln(0, -8, 0, 6, "s-ink s-thin"));
+  };
+  const thing = (k, x, y, r) => G(`translate(${f1(x)} ${f1(y)}) rotate(${f1(r)})`, [
+    R(-10, -7, 20, 14, "f-acc s-ink s-thin", 2) + Ln(-4, -7, -4, 7, "s-ink s-thin"),
+    R(-7, -8, 14, 16, "f-sur s-ink s-thin", 2) + P("M7 -3 h3 a3 3 0 0 1 0 6 h-3", "f-none s-ink s-thin"),
+    C(0, 0, 8, "f-hot s-ink s-thin") + Ln(0, -8, 2, -12, "s-ink s-thin"),
+    R(-6, -10, 12, 20, "f-ink", 3),
+    R(-8, -10, 16, 20, "f-sur s-ink s-thin", 1) + Ln(-4, -4, 4, -4, "s-mut") + Ln(-4, 1, 3, 1, "s-mut"),
+    C(0, 0, 8, "f-hi s-ink s-thin") + P("M-8 0 h16 M0 -8 v16", "s-ink s-thin"),
+  ][k % 6]);
+  const icon = k => [
+    C(-3, 0, 4, "f-hi s-ink s-thin") + Ln(1, 0, 9, 0, "s-ink s-thin") + Ln(7, 0, 7, 4, "s-ink s-thin"),
+    R(-7, -5, 14, 10, "f-sur s-ink s-thin", 1) + P("M-7 -5 L0 1 L7 -5", "f-none s-ink s-thin"),
+    R(-6, -6, 12, 12, "f-sur s-ink s-thin", 1) + R(-6, -6, 12, 4, "f-hot"),
+  ][k];
+
+  const SC = {
+    // Q1: the race to the finish flag. Calm finishes and celebrates; chaos never gets there.
+    finish(t, i) {
+      const per = 3.6, p = (t % per) / per, c = Math.sin(t * 16);
+      let s = ground;
+      const flag = Ln(0, 0, 0, -94, "s-ink") + R(0, -94, 38, 25, "f-sur s-ink") + R(0, -94, 12.7, 12.5, "f-ink") + R(12.7, -81.5, 12.7, 12.5, "f-ink") + R(25.4, -94, 12.6, 12.5, "f-ink");
+      s += G(i === 4 ? "translate(262 151) rotate(70)" : "translate(262 151)", flag);
+      if (i === 0) {
+        if (p < .42) s += run(lerp(48, 280, ease(p / .42)), c);
+        else {
+          s += brain({ x: 280, y: 151 - Math.abs(Math.sin(t * 9)) * 18, aL: 165, aR: 165, lL: 14, lR: 14, eyes: "calm", mouth: "grin" });
+          for (let k = 0; k < 12; k++) s += R(206 + (k * 37) % 108, 10 + (((p - .42) * 300 + k * 29) % 120), 6, 4, ["f-hot", "f-hi", "f-acc"][k % 3], 1);
+        }
+      } else if (i === 1) {
+        if (p < .38) s += run(lerp(48, 240, ease(p / .38)), c);
+        else if (p < .62) s += bfly(204, 72 + Math.sin(t * 5) * 8, t) + brain({ x: 240, y: 151, look: -1, eyes: "open", mouth: "o", aL: 40, aR: 25 });
+        else if (p < .78) s += run(lerp(240, 280, (p - .62) / .16), c);
+        else s += brain({ x: 280, y: 151, aL: 150, aR: 150, eyes: "calm", mouth: "smile", sweat: true });
+      } else if (i === 2) {
+        if (p < .38) s += run(lerp(48, 232, ease(p / .38)), c);
+        else {
+          const q = clamp01((p - .38) / .2), x = lerp(232, 196, q);
+          s += bfly(x - 34, 60 + Math.sin(t * 5) * 10, t);
+          s += q < 1 ? brain({ x, y: 151, flip: -1, lL: 18 * Math.sin(t * 10), lR: 18 * Math.sin(t * 10), look: 1, eyes: "open", mouth: "o" })
+                     : brain({ x, y: 160, flip: -1, lL: -75, lR: 75, aR: 165 + Math.sin(t * 8) * 10, aL: 40, look: 1, eyes: "open", mouth: "flat" }) + Tx(x + 6, 68, "?");
+        }
+      } else if (i === 3) {
+        if (p < .32) s += run(lerp(48, 220, ease(p / .32)), c);
+        else {
+          const q = (p - .32) / .68, x = 220 - q * 176;
+          s += bfly(x - 40, 54 + Math.sin(t * 6) * 12, t) + bfly(x - 70, 80 + Math.sin(t * 5 + 1) * 10, t + 1);
+          s += run(x, c, { flip: -1, aR: 160, eyes: "wide", mouth: "o", sweat: true });
+        }
+      } else {
+        for (let b = 0; b < 4; b++) { const a = t * 2.4 + b * 1.57; s += bfly(160 + Math.cos(a) * 110, 70 + Math.sin(a * 1.3) * 34, t + b); }
+        const dirx = Math.sin(t * 2.6) > 0 ? 1 : -1;
+        s += run(160 + Math.cos(t * 2.6) * 100, c, { flip: dirx, aR: 165, eyes: "spiral", mouth: "grin", sweat: true });
+      }
+      return s;
+    },
+    // Q2: a tidy shelf vs. a juggling act that keeps growing until everything is on the floor.
+    juggle(t, i) {
+      let s = ground;
+      const shelfRot = [0, 0, 3, 9, 26][i];
+      let shelf = Ln(-50, 0, 50, 0, "s-ink") + Ln(-40, 0, -40, 10, "s-ink") + Ln(40, 0, 40, 10, "s-ink");
+      const onShelf = [4, 4, 3, 1, 0][i];
+      for (let k = 0; k < onShelf; k++) shelf += G(`translate(${-36 + k * 24} -11) rotate(${i === 1 && k === 3 ? 18 : 0})`, R(-8, -10, 16, 21, ["f-acc", "f-hot", "f-hi", "f-acc"][k] + " s-ink s-thin", 2));
+      s += G(`translate(76 70) rotate(${shelfRot})`, shelf);
+      [[40, 145, 20], [118, 146, -30], [282, 146, 70], [252, 147, 10], [20, 146, -50], [92, 147, 35]].slice(0, [0, 0, 1, 3, 6][i]).forEach(([x, y, r], k) => { s += thing(k + 1, x, y, r); });
+      const n = [1, 2, 3, 5, 7][i], sp = [.35, .5, .75, 1.1, 1.5][i], h = [30, 44, 54, 62, 70][i];
+      const sw = Math.sin(t * sp * Math.PI * 2) * 14;
+      s += brain({ x: 206, y: 151, aL: 150 + sw, aR: 150 - sw, lL: 8, lR: 8, ...mood(i) });
+      for (let k = 0; k < n; k++) {
+        const ph = t * sp + k / n, phi = ph % 1, ltr = Math.floor(ph) % 2 === 0;
+        let x = ltr ? lerp(170, 242, phi) : lerp(242, 170, phi), y = 80 - h * 4 * phi * (1 - phi);
+        if (i >= 3) { x += Math.sin(t * 4 + k * 1.7) * i * 6; y += Math.cos(t * 5 + k) * i * 2; }
+        s += thing(k, x, y, t * 220 * (k % 2 ? 1 : -1) * (.3 + i * .25));
+      }
+      return s;
+    },
+    // Q3: walking along with a thought bubble of to-dos. Calm keeps them all; chaos pops the bubble.
+    forget(t, i) {
+      const per = 4.4, p = (t % per) / per, x = lerp(44, 278, p), c = Math.sin(t * 9);
+      let s = ground;
+      const off = [[-11, 0], [3, -7], [13, 3]], cy = 34, bx = x - 4;
+      const dropAt = [[], [.7], [.35, .6], [.2, .4, .6], [.1, .1, .1]][i];
+      const popped = i === 4 && p > .1;
+      let inside = "";
+      off.forEach(([ox, oy], k) => {
+        const pk = dropAt[k];
+        if (pk != null && p >= pk) {
+          const q = Math.min(1, (p - pk) / .07), fx = lerp(44, 278, pk) - 4 + ox * (i === 4 ? 3 : 1);
+          s += G(`translate(${f1(fx)} ${f1(lerp(cy + oy, 144, q * q))}) rotate(${f1(q * (k % 2 ? 40 : -35))})`, icon(k));
+        } else inside += G(`translate(${f1(bx + ox)} ${f1(cy + oy)})`, icon(k));
+      });
+      const shrink = i === 3 ? 1 - clamp01((p - .65) / .2) * .45 : 1;
+      if (!popped) {
+        let bub = C(-15, 4, 15, "f-sur s-ink") + C(14, 4, 16, "f-sur s-ink") + C(0, -7, 19, "f-sur s-ink") + E(0, 2, 24, 14, "f-sur");
+        s += C(x + 6, 62, 3, "f-sur s-ink s-thin") + C(x + 2, 54, 4.5, "f-sur s-ink s-thin") + G(`translate(${f1(bx)} ${cy}) scale(${f1(shrink)})`, bub) + inside;
+        if (i === 0 && p > .75) s += check(bx, cy, .9);
+      } else if (p < .2) s += P(`M${f1(bx - 24)} ${cy} l-12 -6 M${f1(bx + 24)} ${cy} l12 -6 M${f1(bx)} ${cy - 22} l0 -12 M${f1(bx - 18)} ${cy - 16} l-9 -9 M${f1(bx + 18)} ${cy - 16} l9 -9`, "s-hot");
+      const lost = (i === 3 && p > .8) || i === 4;
+      s += brain({ x, y: 151 - Math.abs(c) * 2, lL: 22 * c, lR: 22 * c, aL: 20 - 22 * c, aR: 20 + 22 * c, eyes: i === 4 ? "spiral" : lost ? "wide" : i === 0 ? "calm" : "open", look: lost ? -1 : 0, mouth: lost ? "wobble" : "smile", sweat: i === 4 });
+      if (lost) { s += Tx(x + 22, 72, "?"); if (i === 4) s += Tx(x - 40, 60, "?") + Tx(x + 34, 40, "?"); }
+      return s;
+    },
+    // Q4: the work pile. Calm clears it; chaos is on the floor scrolling while the pile topples.
+    avoid(t, i) {
+      const per = 4, p = (t % per) / per;
+      let s = ground + Ln(190, 108, 308, 108, "s-ink") + Ln(200, 108, 200, 151, "s-ink") + Ln(298, 108, 298, 151, "s-ink");
+      s += R(204, 86, 30, 20, "f-acc s-ink s-thin", 2) + Ln(198, 108, 240, 108, "s-ink");
+      const a = t * [10, 30, 90, 240, 600][i] * D2R;
+      s += C(46, 38, 17, "f-sur s-ink") + Ln(46, 38, 46 + Math.sin(a) * 11, 38 - Math.cos(a) * 11, "s-ink s-thin") + Ln(46, 38, 46 + Math.sin(a / 12) * 7, 38 - Math.cos(a / 12) * 7, "s-ink s-thin");
+      const m = [Math.max(0, 5 - Math.floor(p * 6)), Math.max(1, 5 - Math.floor(p * 3)), 5 + Math.floor(p * 3), 9 + Math.floor(p * 3), 14][i];
+      let pile = "";
+      for (let k = 0; k < m; k++) pile += R(250 + (k % 2) * 2, 101 - k * 6, 44, 6, k === m - 1 && i >= 2 ? "f-hi s-ink s-thin" : "f-sur s-ink s-thin", 1);
+      s += G(`rotate(${f1(i >= 3 ? Math.sin(t * 2.5) * (i === 4 ? 6 : 2) : 0)} 272 108)`, pile);
+      for (let k = 0; k < [0, 0, 0, 1, 3][i]; k++) { const q = (p + k * .33) % 1; s += G(`translate(${f1(272 + q * 50)} ${f1(100 - m * 6 - q * 20 + q * q * 120)}) rotate(${f1(q * 300)})`, R(-12, -3, 24, 6, "f-sur s-ink s-thin", 1)); }
+      if (i === 0 && m === 0) s += check(272, 76);
+      const phone = R(20, -58, 10, 17, "f-ink", 2) + P("M34 -58 l4 -3 M35 -51 l5 0 M34 -45 l4 3", "s-hot");
+      const typing = { aL: -70 + Math.sin(t * 22) * 10, aR: 70 + Math.sin(t * 22 + 1) * 10, look: 1 };
+      if (i === 0) s += brain({ x: 168, y: 151, ...typing, eyes: "open", mouth: "smile" });
+      else if (i === 1) s += p > .45 && p < .62 ? brain({ x: 168, y: 151, aR: 150, aL: 20, look: 1, eyes: "open", mouth: "smile", item: phone }) : brain({ x: 168, y: 151, ...typing, eyes: "open", mouth: "flat" });
+      else if (i === 2) s += brain({ x: 168, y: 151, aR: 150, aL: 20, look: 1, eyes: "open", mouth: "smile", item: phone });
+      else if (i === 3) s += brain({ x: 96, y: 151, flip: -1, aR: 150, aL: 20, look: 1, eyes: "open", mouth: "grin", item: phone });
+      else s += brain({ x: 128, y: 146, rot: -90, aR: 178, aL: 30, lL: 10 + Math.sin(t * 6) * 12, lR: 4, look: 1, eyes: "open", mouth: "grin", item: phone });
+      return s;
+    },
+    // Q5: a meeting chair. Calm sips tea; chaos tips the chair over.
+    fidget(t, i) {
+      let s = ground + Ln(212, 100, 310, 100, "s-ink") + Ln(300, 100, 300, 151, "s-ink") + R(272, 86, 12, 14, "f-sur s-ink s-thin", 2);
+      if (i < 4) s += R(232, 96, 24, 4, "f-acc s-ink s-thin", 2);
+      const lifts = [0, 1].map(k => {
+        if (i === 0) return 0;
+        if (i === 1) return k ? 0 : Math.pow(Math.max(0, Math.sin(t * 4.6)), 10) * 7;
+        const f = [0, 0, 11, 16, 23][i], amp = [0, 0, 5, 7, 9][i];
+        return Math.abs(Math.sin(t * f + (i >= 3 ? k * 1.6 : 0))) * amp;
+      });
+      let seat = R(110, 116, 54, 7, "f-ink", 2) + Ln(113, 116, 106, 58, "s-ink") + Ln(118, 123, 118, 151, "s-ink") + Ln(158, 123, 158, 151, "s-ink");
+      lifts.forEach((lift, k) => { const dx = k * 5; seat += P(`M${150 - dx} 113 L${184 - dx} ${f1(110 - lift)} L${187 - dx} ${f1(149 - lift * .9)} l10 0`, "s-ink f-none"); });
+      let item = "";
+      if (i === 0) item = R(22, -40, 11, 12, "f-sur s-ink s-thin", 2) + P(`M25 -44 q-2 -4 0 -7 M30 -44 q2 -4 0 -8`, "s-mut");
+      if (i >= 3) item = G(`translate(31 -36) rotate(${f1(t * [0, 0, 0, 800, 1500][i])})`, R(-11, -2.5, 22, 5, "f-acc s-ink s-thin", 2));
+      seat += brain({ x: 140, y: 147, noLegs: true, aL: 20, aR: i === 0 ? 40 : 65, item, ...mood(i), eyes: ["calm", "open", "open", "wide", "spiral"][i] });
+      const rock = i === 4 ? Math.sin(t * 6) * 14 : i === 3 ? Math.sin(t * 5) * 5 : 0;
+      s += G(`rotate(${f1(rock)} ${i === 4 ? 118 : 137} 151)`, seat);
+      if (i >= 2) for (let k = 0; k < i - 1; k++) s += P(`M${202 + k * 7} ${150 - k * 3} q6 -6 0 -12`, "s-hot");
+      if (i === 4) { for (let k = 0; k < 2; k++) { const q = (t * .6 + k * .5) % 1; s += G(`translate(${f1(240 + q * 60)} ${f1(94 - q * 70)}) rotate(${f1(q * 400)})`, R(-10, -2.5, 20, 5, "f-sur s-ink s-thin", 1)); } }
+      return s;
+    },
+    // Q6: a hamster wheel. Asleep at 0, smoking wheel at 4.
+    wheel(t, i) {
+      const jig = i === 4 ? Math.sin(t * 40) * 2 : 0;
+      let w = Ln(160, 84, 120, 151, "s-ink") + Ln(160, 84, 200, 151, "s-ink");
+      const a0 = t * [0, 40, 120, 300, 700][i];
+      for (let k = 0; k < 8; k++) { const a = (a0 + k * 45) * D2R; w += Ln(160, 84, 160 + Math.cos(a) * 58, 84 + Math.sin(a) * 58, "s-mut"); }
+      w += C(160, 84, 66, "f-none s-ink") + C(160, 84, 58, "f-none s-ink s-thin") + C(160, 84, 6, "f-hi s-ink");
+      let s = ground + G(`translate(0 ${f1(jig)})`, w);
+      if (i === 0) {
+        s += brain({ x: 205, y: 123, s: 1.2, rot: -82, lL: 20, lR: 10, aL: 10, aR: 30, eyes: "sleep", mouth: "smile" });
+        for (let k = 0; k < 3; k++) { const q = (t * .35 + k / 3) % 1; s += Tx(180 + q * 30 + k * 4, 104 - q * 50, "z", "t-z"); }
+      } else {
+        const c = Math.sin(t * [0, 5, 10, 17, 26][i]), amp = [0, 18, 28, 34, 40][i];
+        for (let k = 0; k < i - 1; k++) s += Ln(112 - k * 3, 96 + k * 10, 128, 96 + k * 10, "s-mut");
+        s += brain({ x: 160, y: 142 + jig - Math.abs(c) * 2, rot: 4 + i * 3, lL: amp * c, lR: amp * c, aL: 20 - (25 + i * 6) * c, aR: 20 + (25 + i * 6) * c, ...mood(i) });
+        if (i === 4) {
+          s += P("M120 151 l-10 -7 M120 151 l-12 0 M200 151 l10 -7 M200 151 l12 0", "s-hot");
+          for (let k = 0; k < 3; k++) { const q = (t * .8 + k / 3) % 1; s += C(120 - q * 30 + k * 4, 140 - q * 40, 5 + q * 9, "f-sur s-ink s-thin"); }
+        }
+      }
+      return s;
+    },
+  };
+
+  // ---------- film player: 12 fps, line boil, riso misregistration ----------
+  const reduced = (() => { try { return matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) { return false; } })();
+  const films = new Set();
+  let frameNo = 0, uidc = 0;
+  function filmSVG(name, t, i, uid) {
+    const inner = SC[name](t, i);
+    return `<svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><defs><filter id="b${uid}" x="-4%" y="-4%" width="108%" height="108%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="${frameNo % 3 + 1}" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.6" xChannelSelector="R" yChannelSelector="G"/></filter></defs><g filter="url(#b${uid})"><g class="mis" transform="translate(2.4 1.8)">${inner}</g>${inner}</g></svg>`;
+  }
+  function paintFilm(f, now) {
+    const i = f.getI();
+    f.el.style.backgroundColor = TINT[i];
+    f.el.innerHTML = filmSVG(f.name, reduced ? 1.3 : Math.max(0, now - f.t0) / 1000, i, f.uid);
+  }
+  function addFilm(el, name, getI) { const f = { el, name, getI, uid: ++uidc, t0: performance.now() }; films.add(f); paintFilm(f, performance.now()); return f; }
+  if (!reduced) {
+    let last = 0;
+    const loop = now => {
+      if (now - last >= 80) {
+        last = now; frameNo++;
+        films.forEach(f => { if (!f.el.isConnected) films.delete(f); else paintFilm(f, now); });
+      }
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+  }
+
+  // ---------- state ----------
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+  };
+  function detectLang() {
+    const saved = store.get("adhd90:lang");
+    if (saved === "zh" || saved === "en") return saved;
+    const list = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || "en"];
+    const first = list.find(l => /^(zh|en)/i.test(l)) || "en";
+    return /^zh/i.test(first) ? "zh" : "en";
+  }
+  const blank = () => ({ screen: "intro", idx: 0, ans: Array(6).fill(null) });
+  let state = { ...blank(), lang: detectLang() };
+  let timers = [], locked = false, sceneCtl = null, againArmed = false, celebrate = false;
+  const $ = s => document.querySelector(s);
+  const t = () => T[state.lang];
+  const firstOpen = () => state.ans.findIndex(a => a == null);
+  function save() { store.set("adhd90:v2", { screen: state.screen, idx: state.idx, ans: state.ans }); }
+  function clearTimers() { timers.forEach(x => { clearInterval(x); clearTimeout(x); }); timers = []; }
+
+  // ---------- sound: tiny synth pops, only after a tap ----------
+  const snd = { on: store.get("adhd90:snd") !== false, ctx: null };
+  function ac() {
+    if (!snd.ctx) { try { snd.ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return null; } }
+    if (snd.ctx.state === "suspended") snd.ctx.resume().catch(() => {});
+    return snd.ctx;
+  }
+  function tone(f, at = 0, d = .14, type = "triangle", vol = .13) {
+    if (!snd.on) return;
+    const c = ac(); if (!c) return;
+    try {
+      const o = c.createOscillator(), g = c.createGain(), t0 = c.currentTime + at;
+      o.type = type; o.frequency.setValueAtTime(f, t0); o.frequency.exponentialRampToValueAtTime(f * 1.35, t0 + d * .5);
+      g.gain.setValueAtTime(.0001, t0); g.gain.exponentialRampToValueAtTime(vol, t0 + .012); g.gain.exponentialRampToValueAtTime(.0001, t0 + d);
+      o.connect(g); g.connect(c.destination); o.start(t0); o.stop(t0 + d + .03);
+    } catch (e) {}
+  }
+  const popSound = v => { tone([392, 440, 523, 659, 784][v]); if (v >= 3) tone([0, 0, 0, 880, 1047][v], .07, .1, "square", .05); };
+  const chime = () => [523, 659, 784, 1047].forEach((f, k) => tone(f, k * .09, .22, "triangle", .12));
+  function sndIcon() {
+    const b = $("#snd");
+    b.setAttribute("aria-pressed", snd.on); b.setAttribute("aria-label", t().sound);
+    b.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/>${snd.on ? '<path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>' : '<path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>'}</svg>`;
+  }
+
+  // ---------- particles: ambient confetti behind, bursts on top ----------
+  const fx = (() => {
+    const noop = { set() {}, colors() {}, burst() {}, confetti() {} };
+    const cv = $("#fx"), cv2 = $("#fx2");
+    if (reduced || !cv.getContext) return noop;
+    const c1 = cv.getContext("2d"), c2 = cv2.getContext("2d");
+    if (!c1 || !c2) return noop;
+    let w = 0, h = 0, parts = [], bursts = [], level = 1, sp = .45, cols = ["#FFFFFF"];
+    const SPD = [.2, .45, .9, 1.7, 3], CNT = [8, 12, 18, 28, 40], SH = ["circle", "ring", "square", "tri", "squig", "star", "plus"];
+    const rnd = (a, b) => a + Math.random() * (b - a), pick = a => a[Math.floor(Math.random() * a.length)];
+    function resize() {
+      const d = Math.min(2, window.devicePixelRatio || 1); w = window.innerWidth; h = window.innerHeight;
+      [cv, cv2].forEach(c => { c.width = w * d; c.height = h * d; c.style.width = w + "px"; c.style.height = h + "px"; });
+      c1.setTransform(d, 0, 0, d, 0, 0); c2.setTransform(d, 0, 0, d, 0, 0);
+    }
+    function mk() { const a = rnd(0, 6.283), s = rnd(.3, 1); return { x: rnd(0, w), y: rnd(0, h), vx: Math.cos(a) * s, vy: Math.sin(a) * s, r: rnd(5, 12), rot: rnd(0, 6.3), vr: rnd(-.03, .03), sh: pick(SH), c: pick(cols), a: 0 }; }
+    function draw(ctx, p, alpha) {
+      ctx.save(); ctx.globalAlpha = alpha; ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+      ctx.fillStyle = p.c; ctx.strokeStyle = p.c; ctx.lineWidth = Math.max(2.5, p.r * .38); ctx.lineCap = "round"; ctx.lineJoin = "round";
+      const r = p.r; ctx.beginPath();
+      if (p.sh === "circle") { ctx.arc(0, 0, r, 0, 6.3); ctx.fill(); }
+      else if (p.sh === "ring") { ctx.arc(0, 0, r * .8, 0, 6.3); ctx.stroke(); }
+      else if (p.sh === "square") { ctx.rect(-r * .8, -r * .8, r * 1.6, r * 1.6); ctx.fill(); }
+      else if (p.sh === "tri") { ctx.moveTo(0, -r); ctx.lineTo(r * .9, r * .7); ctx.lineTo(-r * .9, r * .7); ctx.closePath(); ctx.fill(); }
+      else if (p.sh === "squig") { ctx.moveTo(-r * 1.4, 0); for (let k = 0; k < 4; k++) ctx.quadraticCurveTo(-r * 1.4 + r * .35 + k * r * .7, (k % 2 ? 1 : -1) * r * .7, -r * 1.4 + (k + 1) * r * .7, 0); ctx.stroke(); }
+      else if (p.sh === "star") { for (let k = 0; k < 10; k++) { const rr = k % 2 ? r * .45 : r, an = k * Math.PI / 5 - Math.PI / 2; ctx.lineTo(Math.cos(an) * rr, Math.sin(an) * rr); } ctx.closePath(); ctx.fill(); }
+      else { ctx.rect(-r, -r * .28, r * 2, r * .56); ctx.rect(-r * .28, -r, r * .56, r * 2); ctx.fill(); }
+      ctx.restore();
+    }
+    function tick() {
+      c1.clearRect(0, 0, w, h); c2.clearRect(0, 0, w, h);
+      sp += (SPD[level] - sp) * .05;
+      const alive = parts.filter(p => !p.dying).length, want = CNT[level];
+      if (alive < want && Math.random() < .35) parts.push(mk());
+      if (alive > want) { const d = parts.find(p => !p.dying); if (d) d.dying = true; }
+      parts = parts.filter(p => !(p.dying && p.a <= .01));
+      const j = level >= 3 ? (level - 2) * 1.3 : 0;
+      for (const p of parts) {
+        p.a += p.dying ? -.03 : (.5 - p.a) * .05; if (p.a < 0) p.a = 0;
+        p.x += p.vx * sp + (j ? rnd(-j, j) : 0); p.y += p.vy * sp + (j ? rnd(-j, j) : 0); p.rot += p.vr * sp * 3;
+        if (p.x < -30) p.x = w + 30; if (p.x > w + 30) p.x = -30; if (p.y < -30) p.y = h + 30; if (p.y > h + 30) p.y = -30;
+        draw(c1, p, p.a);
+      }
+      bursts = bursts.filter(b => b.life > 0);
+      for (const b of bursts) { b.vy += b.g; b.vx *= .985; b.x += b.vx; b.y += b.vy; b.rot += b.vr; b.life--; draw(c2, b, Math.min(1, b.life / 20)); }
+      requestAnimationFrame(tick);
+    }
+    resize(); window.addEventListener("resize", resize); requestAnimationFrame(tick);
+    const api = {
+      set(l) { level = Math.max(0, Math.min(4, l)); },
+      colors(c) { cols = c; parts.forEach(p => { if (Math.random() < .75) p.c = pick(c); }); },
+      burst(x, y, n, cs) {
+        const pal = cs || INKS;
+        for (let k = 0; k < n; k++) { const a = rnd(0, 6.283), s = rnd(3, 10); bursts.push({ x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s - 3, g: .28, r: rnd(4, 9), rot: rnd(0, 6), vr: rnd(-.3, .3), sh: pick(SH), c: pick(pal), life: rnd(50, 85) }); }
+      },
+      confetti() { for (let k = 0; k < 4; k++) setTimeout(() => api.burst(rnd(.15, .85) * w, rnd(.05, .3) * h, 30), k * 150); },
+    };
+    return api;
+  })();
+
+  // ---------- worlds + transitions ----------
+  function worldIndex(screen, idx) {
+    if (screen === "q") return idx % 6;
+    if (screen === "result") return RES_WORLD[score(state.ans).pos ? "pos" : "neg"];
+    return 0;
+  }
+  function setWorld(k) {
+    const wd = W[k], r = document.documentElement.style;
+    r.setProperty("--bg", wd.bg); r.setProperty("--on", wd.on); r.setProperty("--sh", wd.sh); r.setProperty("--a", wd.a);
+    fx.colors([wd.sh, "#FFFFFF", wd.a, wd.sh, "#17142E"]);
+  }
+  function wipe(color, x, y, then) {
+    if (reduced) { then(); return; }
+    const o = document.createElement("div");
+    const rad = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y)) + 20;
+    o.className = "wipe"; o.style.background = color; o.style.clipPath = `circle(0px at ${x}px ${y}px)`;
+    document.body.appendChild(o);
+    o.getBoundingClientRect();
+    o.style.transition = "clip-path .48s cubic-bezier(.7,0,.25,1)";
+    o.style.clipPath = `circle(${rad}px at ${x}px ${y}px)`;
+    setTimeout(() => {
+      then();
+      o.style.transition = "opacity .22s ease"; o.style.opacity = "0";
+      setTimeout(() => o.remove(), 240);
+    }, 500);
+  }
+  function centerOf(el) { const r = el.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; }
+
+  // ---------- views ----------
+  const ch = c => `<span class="ch" style="animation-delay:-${(Math.random() * .4).toFixed(2)}s">${c}</span>`;
+  const chars = s => state.lang === "en"
+    ? s.split(" ").map(wd => `<span class="wd">${[...wd].map(ch).join("")}</span>`).join(" ")
+    : s.match(/.[，。、；：？！）」』”…]*/gu).map(tok => tok.length > 1 ? `<span class="wd">${[...tok].map(ch).join("")}</span>` : ch(tok)).join("");
+
+  function vIntro() {
+    const L = t(), open = firstOpen(), started = state.ans.some(a => a != null);
+    const go = s => s.replace("→", `<span class="arr">→</span>`);
+    const buddy = `<span class="buddy" id="buddy" aria-hidden="true"></span>`;
+    let cta;
+    if (open === -1) cta = `<button type="button" class="btn big go" data-act="seeLast">${go(L.seeLast)}${buddy}</button><button type="button" class="btn sm" data-act="fresh">${L.restart}</button>`;
+    else if (started) cta = `<button type="button" class="btn big go" data-act="resume">${go(L.resume(open + 1))}${buddy}</button><button type="button" class="btn sm" data-act="fresh">${L.restart}</button>`;
+    else cta = `<button type="button" class="btn big go" data-act="fresh">${go(L.start)}${buddy}</button>`;
+    const rots = [-7, 5, -4, 8];
+    const mags = "ADHD".split("").map((c, k) => `<span class="mag m${k}" style="--r:${rots[k]}deg;--d:-${k * .5}s">${c}</span>`).join("");
+    const fr = SHARED && SHARED.n >= 0 && SHARED.n <= 6 ? `<p class="friend">${face(SHARED.n >= 4 ? 4 : SHARED.n >= 2 ? 2 : 0)}${L.friend((SHARED.n >= 4 ? L.pos : L.neg).h, SHARED.n)}</p>` : "";
+    return `<section class="intro enter">
+      ${fr}
+      <div class="poster">
+        <p class="eyebrow">${L.eyebrow}</p>
+        <h1 class="hero disp"><span style="white-space:nowrap">${L.h1pre}</span> <span style="white-space:nowrap">${mags}${L.h1post}</span></h1>
+        <p class="tagline">${L.tagline.split(/(?<=[。.])\s*/).filter(Boolean).map(x => `<span class="tl">${x}</span>`).join(state.lang === "zh" ? "" : " ")}</p>
+        <div class="cta-row">${cta}</div>
+        <div class="pills">${L.pills.map((p, k) => `<span class="pill" style="--r:${[-3, 2, -1.5][k]}deg">${face([0, 2, 1][k])}${p}</span>`).join("")}</div>
+      </div>
+      <p class="note">${L.notDx}</p>
+    </section>`;
+  }
+
+  function vQ() {
+    const L = t(), i = state.idx, [qt, ex] = Q[i][state.lang], a = state.ans[i];
+    const dots = Q.map((_, j) => {
+      if (j === i) return `<span class="dot now"></span>`;
+      if (state.ans[j] != null) return `<span class="dot on">${face(state.ans[j])}</span>`;
+      return `<span class="dot"></span>`;
+    }).join("");
+    const kr = [-2, 1.5, -1, 2, -1.5];
+    const keys = L.opts.map((w, v) => `<button type="button" class="key${a === v ? " sel" : ""}" data-act="opt" data-v="${v}" aria-pressed="${a === v}" style="--r:${kr[v]}deg">
+        <span class="kn">${v + 1}</span>${face(v)}<span>${w}</span></button>`).join("");
+    return `<section class="q enter" aria-labelledby="qt">
+      <div class="prog"><div class="dots" aria-hidden="true">${dots}</div><span class="left">${L.left(5 - i)}</span></div>
+      <div class="qhead">
+        <p class="eyebrow">${L.qnum(i + 1, 6)} · ${L.past}</p>
+        <h2 class="qtext disp" id="qt" aria-label="${qt.replace(/"/g, "&quot;")}"><span aria-hidden="true">${chars(qt)}</span></h2>
+        <p class="tape"><b>${L.exPrefix}</b>${ex}</p>
+      </div>
+      <div class="stage" style="--tilt:${i % 2 ? 1.2 : -1.2}deg" aria-hidden="true"><div class="film" id="sv"></div><span class="stag" id="stag"></span></div>
+      <div class="grow"></div>
+      <div class="keys" id="keys" role="group" aria-labelledby="qt">${keys}</div>
+      <div class="qfoot"><button type="button" class="back" data-act="back">${L.back}</button><span class="kbd">${L.kbd}</span></div>
+    </section>`;
+  }
+
+  const resultURL = sc => `${SHARE_URL}/r/${state.lang}-${sc.a}`;
+  function tweetText(sc) { const L = t(); return L.tweet((sc.pos ? L.pos : L.neg).h, sc.a); }
+  const tweetHref = sc => `https://x.com/intent/tweet?text=${encodeURIComponent(tweetText(sc))}&url=${encodeURIComponent(resultURL(sc))}`;
+
+  function vRes() {
+    const L = t(), sc = score(state.ans), V = sc.pos ? L.pos : L.neg;
+    const cells = Array.from({ length: 6 }, (_, k) => `<i class="${k < sc.a ? "on" : ""}"></i>`).join("");
+    const url = SHARE_URL.replace(/^https?:\/\//, "");
+    return `<section class="res enter t-${sc.pos ? "pos" : "neg"}">
+      <div class="rtop"><span class="done">${L.doneTag}</span><button type="button" class="btn sm" data-act="again">${L.again}</button></div>
+      <div class="verdict">
+        <span class="stamp">${V.stamp}</span>
+        <h1 class="vh disp">${V.h}</h1>
+        <p class="vsub">${V.sub(sc.a)}</p>
+        <div class="meter" aria-hidden="true">
+          <div class="mcells">${cells}<span class="mline"></span></div>
+          <div class="mlab"><span>${L.meterYou(sc.a)}</span><span>${L.meterLine}</span></div>
+        </div>
+        <p class="vnext">${V.next(sc.a)}</p>
+        <div class="srow"><button type="button" class="btn dark" data-act="steps">${V.btn}</button><a class="btn" href="${tweetHref(sc)}" target="_blank" rel="noopener">${L.shareX}</a></div>
+        <p class="honest">${L.honest}</p>
+      </div>
+      <div class="sec" id="steps">
+        <h2 class="disp">${V.steps}</h2>
+        <ol class="steps">${L.steps.map(([h, p], k) => `<li style="--r:${[-1, .8, -.6][k]}deg"><b>${h}</b><p>${p}</p></li>`).join("")}</ol>
+      </div>
+      <div class="sec">
+        <h2 class="disp">${L.shareTitle}</h2>
+        <div class="duo">
+          <div class="holo-wrap" id="holoWrap">
+            <div class="holo" id="holo" role="img" aria-label="${L.cardTop}: ${V.h}, ${sc.a}/6">
+              <div class="h-top"><span>${L.cardTop}</span><span>ASRS v1.1</span></div>
+              <div class="h-art film" id="cardFilm"></div>
+              <span class="h-stamp">${V.stamp}</span>
+              <p class="h-v">${V.h}</p>
+              <div class="h-row"><div class="h-faces">${state.ans.map(a => `<span>${face(a ?? 0)}</span>`).join("")}</div><span class="h-n">${sc.a}<small>/6</small></span></div>
+              <div class="h-foot"><span>${L.cardSrc}</span><span><b>${L.cardTry}</b><br>${url}</span></div>
+            </div>
+          </div>
+          <div class="sharecol">
+            <p>${L.cardHint}</p>
+            <div class="preview">${tweetText(sc)}\n${resultURL(sc)}</div>
+            <div class="srow">
+              <a class="btn dark sm" href="${tweetHref(sc)}" target="_blank" rel="noopener">${L.shareX}</a>
+              <button type="button" class="btn sm" data-act="copy">${L.copy}</button>
+            </div>
+            <input class="copybox" id="copybox" readonly value="${resultURL(sc)}" hidden>
+          </div>
+        </div>
+      </div>
+      <div class="foot"><p>${L.foot} <a href="${SOURCE_URL}" target="_blank" rel="noopener">${L.source}</a></p></div>
+    </section>`;
+  }
+
+  // ---------- behaviour ----------
+  function initQ() {
+    const stag = $("#stag"), qt = $("#qt"), q = Q[state.idx];
+    let level = -1, demo = true, dv = 0, dir = 1;
+    const film = addFilm($("#sv"), q.s, () => Math.max(0, level));
+    const show = (v, user) => {
+      if (v !== level) { level = v; paintFilm(film, performance.now()); }
+      stag.innerHTML = face(v) + t().opts[v];
+      qt.classList.toggle("w3", v === 3);
+      qt.classList.toggle("w4", v === 4);
+      qt.classList.toggle("gentle", !user);
+      fx.set(v);
+      document.querySelectorAll(".key").forEach(b => b.classList.toggle("pv", !!user && +b.dataset.v === v && !b.classList.contains("sel")));
+    };
+    const a = state.ans[state.idx];
+    if (a != null) { demo = false; show(a, false); }
+    else {
+      show(reduced ? 2 : 0, false);
+      if (!reduced) timers.push(setInterval(() => { if (!demo) return; dv += dir; if (dv >= 4 || dv <= 0) dir *= -1; show(dv, false); }, 2200));
+    }
+    sceneCtl = {
+      preview(v) { demo = false; show(v, true); },
+      // Show the chosen answer while the next-screen transition starts.
+      settle(v) { demo = false; film.t0 = performance.now(); level = -1; show(v, true); document.querySelectorAll(".key.pv").forEach(b => b.classList.remove("pv")); },
+      release() { const x = state.ans[state.idx]; if (x != null) show(x, false); else { demo = true; show(level, false); } },
+    };
+    const keys = $("#keys");
+    keys.addEventListener("pointerover", e => { const b = e.target.closest(".key"); if (b && !locked) sceneCtl.preview(+b.dataset.v); });
+    keys.addEventListener("pointerleave", () => { if (!locked) sceneCtl.release(); });
+    keys.addEventListener("focusin", e => { const b = e.target.closest(".key"); if (b && !locked && b.matches(":focus-visible")) sceneCtl.preview(+b.dataset.v); });
+  }
+
+  function initIntro() {
+    fx.set(1);
+    // The brain buddy waves from the Start button and gets excited when you reach for it.
+    const el = $("#buddy"), btn = el.closest("button");
+    let hype = false;
+    const draw = t => {
+      const b = hype
+        ? brain({ x: 0, y: -Math.abs(Math.sin(t * 9)) * 12, aL: 160 + Math.sin(t * 18) * 14, aR: 160 - Math.sin(t * 18) * 14, lL: 20, lR: 20, eyes: "wide", mouth: "grin" })
+        : brain({ x: 0, y: -Math.abs(Math.sin(t * 3)) * 3, aL: 24, aR: 150 + Math.sin(t * 8) * 22, eyes: t % 3.2 < .14 ? "sleep" : "open", mouth: "smile" });
+      el.innerHTML = `<svg viewBox="-60 -112 120 116"><defs><filter id="bb" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="${frameNo % 3 + 1}" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.6" xChannelSelector="R" yChannelSelector="G"/></filter></defs><g filter="url(#bb)"><g class="mis" transform="translate(2.4 1.8)">${b}</g>${b}</g></svg>`;
+    };
+    draw(1);
+    if (reduced) return;
+    ["pointerenter", "focus"].forEach(e => btn.addEventListener(e, () => { hype = true; }));
+    ["pointerleave", "blur"].forEach(e => btn.addEventListener(e, () => { hype = false; }));
+    const t0 = performance.now();
+    timers.push(setInterval(() => draw((performance.now() - t0) / 1000), 83));
+  }
+
+  function initRes() {
+    const sc = score(state.ans);
+    fx.set(1);
+    if (celebrate) { celebrate = false; fx.confetti(); chime(); }
+    const top = sc.top === -1 ? 5 : sc.top, lvl = sc.top === -1 ? 0 : state.ans[sc.top];
+    addFilm($("#cardFilm"), Q[top].s, () => lvl);
+    const wrap = $("#holoWrap"), card = $("#holo");
+    if (!wrap || reduced) return;
+    wrap.addEventListener("pointermove", e => {
+      const r = wrap.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+      card.style.setProperty("--rx", ((px - .5) * 20).toFixed(1) + "deg");
+      card.style.setProperty("--ry", ((.5 - py) * 20).toFixed(1) + "deg");
+      card.style.setProperty("--hx", (px * 100).toFixed(0) + "%");
+      card.style.setProperty("--hy", (py * 100).toFixed(0) + "%");
+    });
+    wrap.addEventListener("pointerleave", () => { ["--rx", "--ry", "--hx", "--hy"].forEach(p => card.style.removeProperty(p)); });
+  }
+
+  function render(keepScroll) {
+    clearTimers(); films.clear(); locked = false; sceneCtl = null; againArmed = false;
+    const L = t();
+    document.documentElement.lang = state.lang === "zh" ? "zh-Hans" : "en";
+    document.title = L.brand;
+    $("#brand").textContent = L.brand;
+    $("#logo").innerHTML = face(state.screen === "q" ? 3 : state.screen === "result" ? 1 : 4);
+    $("#l-zh").setAttribute("aria-pressed", state.lang === "zh");
+    $("#l-en").setAttribute("aria-pressed", state.lang === "en");
+    sndIcon();
+    setWorld(worldIndex(state.screen, state.idx));
+    $("#main").innerHTML = state.screen === "q" ? vQ() : state.screen === "result" ? vRes() : vIntro();
+    if (state.screen === "q") initQ();
+    else if (state.screen === "result") initRes();
+    else initIntro();
+    save();
+    if (!keepScroll) window.scrollTo(0, 0);
+  }
+
+  function go(screen, idx, pt) {
+    const apply = () => { state.screen = screen; if (idx != null) state.idx = idx; render(); };
+    if (!pt) { apply(); return; }
+    locked = true;
+    const k = screen === "q" ? worldIndex("q", idx) : screen === "result" ? RES_WORLD[score(state.ans).pos ? "pos" : "neg"] : 0;
+    wipe(W[k].bg, pt.x, pt.y, apply);
+  }
+
+  function choose(v, pt) {
+    if (locked || state.screen !== "q") return;
+    locked = true;
+    state.ans[state.idx] = v; save();
+    const btn = document.querySelector(`.key[data-v="${v}"]`);
+    document.querySelectorAll(".key").forEach(b => {
+      const on = b === btn;
+      b.classList.toggle("sel", on); b.classList.remove("pv"); b.setAttribute("aria-pressed", on);
+    });
+    if (sceneCtl) sceneCtl.settle(v);
+    const p = pt || (btn ? centerOf(btn) : { x: window.innerWidth / 2, y: window.innerHeight - 80 });
+    popSound(v);
+    fx.burst(p.x, p.y, 18 + v * 9);
+    if (state.idx === 5) { celebrate = true; go("result", null, p); }
+    else go("q", state.idx + 1, p);
+  }
+
+  function back(el) {
+    if (locked) return;
+    const p = el ? centerOf(el) : { x: 40, y: window.innerHeight - 40 };
+    if (state.idx === 0) go("intro", null, p);
+    else go("q", state.idx - 1, p);
+  }
+
+  async function copyLink(btn) {
+    const L = t(), link = resultURL(score(state.ans));
+    try {
+      await navigator.clipboard.writeText(link);
+      btn.textContent = L.copied; tone(880, 0, .1);
+      timers.push(setTimeout(() => { btn.textContent = L.copy; }, 2000));
+    } catch (e) {
+      const box = $("#copybox"); box.hidden = false; box.focus(); box.select();
+    }
+  }
+
+  document.addEventListener("click", e => {
+    const el = e.target.closest("[data-act]");
+    if (!el) return;
+    const act = el.dataset.act, pt = (e.clientX || e.clientY) ? { x: e.clientX, y: e.clientY } : centerOf(el);
+    if (act === "lang") { state.lang = el.dataset.l; store.set("adhd90:lang", state.lang); render(true); }
+    else if (act === "snd") { snd.on = !snd.on; store.set("adhd90:snd", snd.on); sndIcon(); if (snd.on) tone(659, 0, .12); }
+    else if (act === "fresh") { if (locked) return; ac(); state = { ...state, ...blank() }; tone(523, 0, .12); go("q", 0, pt); }
+    else if (act === "resume") { if (locked) return; ac(); const o = firstOpen(); go("q", o === -1 ? 0 : o, pt); }
+    else if (act === "seeLast") { if (locked) return; go("result", null, pt); }
+    else if (act === "opt") choose(+el.dataset.v, pt);
+    else if (act === "back") back(el);
+    else if (act === "steps") { const s = $("#steps"); if (s) s.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" }); }
+    else if (act === "copy") copyLink(el);
+    else if (act === "again") {
+      if (!againArmed) { againArmed = true; el.textContent = t().againSure; return; }
+      state = { ...state, ...blank() }; go("intro", null, pt);
+    }
+  });
+
+  document.addEventListener("keydown", e => {
+    if (e.metaKey || e.ctrlKey || e.altKey || state.screen !== "q") return;
+    if (e.target.matches && e.target.matches("input, textarea")) return;
+    if (/^[1-5]$/.test(e.key)) { e.preventDefault(); choose(+e.key - 1); }
+    else if (e.key === "ArrowLeft") { e.preventDefault(); back($(".back")); }
+  });
+
+  function start(data) {
+    const saved = (data && data.state) || store.get("adhd90:v2");
+    if (saved && Array.isArray(saved.ans) && saved.ans.length >= 6) {
+      state.ans = saved.ans.slice(0, 6); state.idx = Math.min(5, saved.idx || 0);
+      const done = firstOpen() === -1;
+      if (data && data.state) state.screen = saved.screen;
+      else state.screen = saved.screen === "result" && done && !SHARED ? "result" : "intro";
+      if (data && data.state && data.state.lang) state.lang = data.state.lang;
+    }
+    render();
+  }
+
+  if (window.claude && window.claude.hot && window.claude.hot.snapshot) {
+    try { window.claude.hot.snapshot(() => ({ state: { ...state } })); } catch (e) {}
+  }
+  if (window.claude && window.claude.hot && window.claude.hot.ready) window.claude.hot.ready(start);
+  else start((window.claude && window.claude.hot && window.claude.hot.data) || {});
+})();
+</script>

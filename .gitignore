@@ -1,0 +1,7 @@
+dist/
+.vercel/
+.vercel
+/AGENTS.md
+/AGENTS.override.md
+.env
+.env.*
